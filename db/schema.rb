@@ -11,15 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120507161841) do
+ActiveRecord::Schema.define(:version => 20120507143937) do
 
-  create_table "arrangements", :force => true do |t|
-    t.string   "uuid",       :null => false
+  create_table "arrangements", :id => false, :force => true do |t|
+    t.string   "uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "arrangements", ["uuid"], :name => "index_arrangements_on_uuid", :unique => true
 
   create_table "participants", :force => true do |t|
     t.integer  "user_id",        :null => false
