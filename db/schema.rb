@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120507143937) do
 
   create_table "arrangements", :force => true do |t|
+    t.string   "uuid",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
