@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+sune = User.create :name => "Sune Simonsen"
+
+fun = Arrangement.create
+
+participant = Participant.new
+participant.user_id = sune.id
+participant.arrangement_id = fun.id
+participant.save
