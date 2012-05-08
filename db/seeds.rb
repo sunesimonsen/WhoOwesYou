@@ -8,7 +8,7 @@
 
 sune = User.create :name => "Sune Simonsen"
 
-fun = Arrangement.create
+fun = Arrangement.create :name => "Fun"
 
 participant = Participant.new
 participant.user_id = sune.id
