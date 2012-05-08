@@ -1,6 +1,6 @@
 require File.dirname(__FILE__)+'/../spec_helper'
 
-describe Arrangement  do
+describe User  do
 
   it "requires a name to be valid" do
     subject.should_not be_valid 
