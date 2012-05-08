@@ -1,0 +1,6 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+test/dummy_app/log/*
+tmp/*

@@ -3,6 +3,8 @@ class Arrangement < ActiveRecord::Base
 
   has_many :participants
 
+  validates :name, :presence => true
+
   before_create :generate_uuid
 
   def generate_uuid
