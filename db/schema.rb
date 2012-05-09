@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(:version => 20120509085122) do
   end
 
   create_table "expenses", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "amount",     :null => false
+    t.string   "name",           :null => false
+    t.integer  "amount",         :null => false
+    t.integer  "participant_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
