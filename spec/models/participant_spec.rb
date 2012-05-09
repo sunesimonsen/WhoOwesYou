@@ -10,16 +10,21 @@ describe Participant do
     subject.should be_valid
   end 
 
-  it "should return the sum of all expenses for total_amount" do
-    expenses = [double("Expense 1", :amount => 250), double("Expense 2", :amount => 100)]
-    subject.stub(:expenses => expenses) 
-    subject.total_amount.should eql(350)
-  end
-
   it "have the same name as its user" do
     subject.user = users :john
     subject.user.name = "user name"
     subject.name.should eql("user name")
   end
 
+
+  it "should return the sum of all expenses for total_amount" do
+    expenses = [double("Expense 1", :amount => 250), double("Expense 2", :amount => 100)]
+    subject.stub(:expenses => expenses) 
+    subject.total_amount.should eql(350)
+  end
+
+  it "should return zero when no expenses are present" do
+    subject.stub(:expenses => []) 
+    subject.total_amount.should eql(0)
+  end
 end 
