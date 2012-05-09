@@ -11,8 +11,8 @@ describe Participant do
   end 
 
   it "should return the sum of all expenses for total_amount" do
-    subject.expenses << Expense.new(:name => "Beer", :amount => 250)
-    subject.expenses << Expense.new(:name => "Chips", :amount => 100)
+    expenses = [double("Expense 1", :amount => 250), double("Expense 2", :amount => 100)]
+    subject.stub(:expenses => expenses) 
     subject.total_amount.should eql(350)
   end
 
