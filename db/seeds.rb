@@ -6,11 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-sune = User.create :name => "Sune Simonsen"
+unless Arrangement.find_by_name("Fun")
 
-fun = Arrangement.create :name => "Fun"
+  sune = User.create :name => "Sune Simonsen"
 
-participant = Participant.new
-participant.user_id = sune.id
-participant.arrangement_id = fun.id
-participant.save
+  fun = Arrangement.create :name => "Fun"
+
+  participant = Participant.new
+  participant.user_id = sune.id
+  participant.arrangement_uuid = fun.uuid
+  participant.save
+
+end
