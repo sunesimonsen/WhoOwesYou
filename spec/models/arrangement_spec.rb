@@ -20,4 +20,18 @@ describe Arrangement  do
       subject.total_expenses.should eql(0)
     end
   end 
+
+  describe "average_expenses" do
+    it "should return the average expenses over all the participants" do
+      participants = [double("Participant 1", :total_expenses => 251), double("Participant 2", :total_expenses => 320)]
+      subject.stub(:participants => participants) 
+      subject.average_expenses.should eql(285.5)
+    end
+
+    it "should return zero when no expenses are present" do
+      subject.stub(:participants => []) 
+      subject.average_expenses.should eql(0)
+    end
+  end 
+
 end 

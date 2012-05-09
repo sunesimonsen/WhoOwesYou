@@ -14,5 +14,14 @@ class Arrangement < ActiveRecord::Base
   def total_expenses
     participants.inject(0) { |sum, p| p.total_expenses + sum }
   end 
+
+  def average_expenses
+    count = participants.count 
+    if count > 0
+      total_expenses / participants.count.to_d
+    else
+      0
+    end 
+  end 
     
 end
