@@ -10,5 +10,9 @@ class Arrangement < ActiveRecord::Base
   def generate_uuid
     self.uuid = UUID.new.generate
   end
+
+  def total_expenses
+    participants.inject(0) { |sum, p| p.total_expenses + sum }
+  end 
     
 end
