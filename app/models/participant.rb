@@ -6,9 +6,7 @@ class Participant < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :arrangement_uuid, :presence => true
 
-  def name
-    user.name
-  end
+  delegate :name, :to => :user
 
   def total_expenses
     expenses.inject(0) { |sum,e| sum + e.amount }

@@ -3,7 +3,21 @@ require 'spec_helper'
 describe Participant do
   fixtures :users, :arrangements
 
-  it "requires a user and an arragement to be valid" do
+  before(:each) do
+    subject.user = users :john
+    subject.arrangement = arrangements :party
+  end 
+
+  it "requires an user to be valid" do
+    subject.user = nil
+    subject.should_not be_valid
+    subject.user = users :john
+    subject.arrangement = arrangements :party
+    subject.should be_valid
+  end 
+
+  it "requires an arrangement to be valid" do
+    subject.arrangement = nil
     subject.should_not be_valid
     subject.user = users :john
     subject.arrangement = arrangements :party
@@ -11,7 +25,6 @@ describe Participant do
   end 
 
   it "have the same name as its user" do
-    subject.user = users :john
     subject.user.name = "user name"
     subject.name.should eql("user name")
   end
