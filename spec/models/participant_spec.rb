@@ -53,7 +53,7 @@ describe Participant do
     it "should be the difference between the total expenses and the average expenses of the arrangement" do
       subject.arrangement.stub(:average_expenses => 100)
       subject.stub(:total_expenses => 134)
-      subject.dept.should eql(34)
+      subject.claim.should eql(34)
     end
   end 
 end 

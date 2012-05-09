@@ -22,4 +22,13 @@ class Participant < ActiveRecord::Base
       average_expenses - total_expenses
     end 
   end
+
+  def claim
+    average_expenses = arrangement.average_expenses 
+    if total_expenses < average_expenses
+      0
+    else
+      total_expenses - average_expenses
+    end 
+  end
 end
