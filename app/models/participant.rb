@@ -10,7 +10,7 @@ class Participant < ActiveRecord::Base
     user.name
   end
 
-  def total_amount
+  def total_expenses
     expenses.inject(0) { |sum,e| sum + e.amount }
   end
 end
