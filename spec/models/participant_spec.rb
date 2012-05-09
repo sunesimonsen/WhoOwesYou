@@ -28,4 +28,18 @@ describe Participant do
       subject.total_expenses.should eql(0)
     end
   end
+
+  describe "dept" do
+    it "should be zero if the total expenses surpass the average expenses of the arrangement" do
+      subject.arrangement.stub(:average_expenses => 100)
+      subject.stub(:total_expenses => 101)
+      subject.dept.should eql(0)
+    end
+
+    it "should be the difference between the total expenses and the average expenses of the arrangement" do
+      subject.arrangement.stub(:average_expenses => 100)
+      subject.stub(:total_expenses => 51)
+      subject.dept.should eql(49)
+    end
+  end 
 end 

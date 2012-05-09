@@ -13,4 +13,13 @@ class Participant < ActiveRecord::Base
   def total_expenses
     expenses.inject(0) { |sum,e| sum + e.amount }
   end
+
+  def dept
+    average_expenses = arrangement.average_expenses 
+    if total_expenses > average_expenses
+      0
+    else
+      average_expenses - total_expenses
+    end 
+  end
 end
