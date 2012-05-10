@@ -56,6 +56,18 @@ describe Participant do
     end
   end 
 
+  describe "in_debt?" do
+    it "should be true when the debt is greater than zero" do
+      subject.stub(:debt => 34)
+      subject.in_debt?.should be_true
+    end 
+    
+    it "should be false when the debt is less or equals to zero" do
+      subject.stub(:debt => 0)
+      subject.in_debt?.should be_false
+    end 
+  end 
+
   describe "claim" do
     it "should be zero if the total expenses is less than or equal to the average expenses of the arrangement" do
       subject.arrangement.stub(:average_expenses => 100)
@@ -70,15 +82,16 @@ describe Participant do
     end
   end 
 
-  describe "in_debt?" do
-    it "should be true when the debt is greater than zero" do
-      subject.stub(:debt => 34)
-      subject.in_debt?.should be_true
+  describe "has_claim?" do
+    it "should be true when the claim is greater than zero" do
+      subject.stub(:claim => 34)
+      subject.has_claim?.should be_true
     end 
     
-    it "should be false when the debt is less or equals to zero" do
-      subject.stub(:debt => 0)
-      subject.in_debt?.should be_false
+    it "should be false when the claim is less or equals to zero" do
+      subject.stub(:claim => 0)
+      subject.has_claim?.should be_false
     end 
   end 
+
 end 

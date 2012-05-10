@@ -21,6 +21,10 @@ class Participant < ActiveRecord::Base
     end 
   end
 
+  def in_debt?
+    debt > 0
+  end 
+
   def claim
     average_expenses = arrangement.average_expenses 
     if total_expenses < average_expenses
@@ -30,7 +34,9 @@ class Participant < ActiveRecord::Base
     end 
   end
 
-  def in_debt?
-    debt > 0
+
+  def has_claim?
+    claim > 0
   end 
+  
 end
