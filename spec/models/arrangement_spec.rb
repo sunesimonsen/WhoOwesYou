@@ -37,21 +37,22 @@ describe Arrangement  do
   end 
 
   describe "debitors" do
+    let(:participants) do
+      participants = [double("Participant 1", :in_debt? => true, :debt => 123),
+                      double("Participant 2", :in_debt? => false, :debt => 0),
+                      double("Participant 3", :in_debt? => true, :debt => 23)]
+    end 
+
     it "is empty when there are no participants" do
       subject.stub(:participants => []) 
       subject.debitors.should be_empty
     end
 
     it "it contains the participants with debt" do
-      participants = [double("Participant 1", :in_debt? => true),
-                      double("Participant 2", :in_debt? => false),
-                      double("Participant 3", :in_debt? => true)]
       subject.stub(:participants => participants) 
-
       expected = [participants[0], participants[2]]
       subject.debitors.should eql(expected)
     end 
-    
   end
 
 end 
