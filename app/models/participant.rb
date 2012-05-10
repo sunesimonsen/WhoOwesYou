@@ -34,9 +34,7 @@ class Participant < ActiveRecord::Base
     end 
   end
 
-
   def has_claim?
     claim > 0
   end 
-  
 end
