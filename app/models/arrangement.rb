@@ -23,5 +23,9 @@ class Arrangement < ActiveRecord::Base
       0
     end 
   end 
+
+  def debitors
+    participants.find_all { |p| p.in_debt? }
+  end 
     
 end

@@ -10,7 +10,8 @@ describe Arrangement  do
 
   describe "total_expenses" do
     it "should return the sum the total_expenses of each participant" do
-      participants = [double("Participant 1", :total_expenses => 250), double("Participant 2", :total_expenses => 320)]
+      participants = [double(:total_expenses => 250),
+                      double(:total_expenses => 320)]
       subject.stub(:participants => participants) 
       subject.total_expenses.should eql(570)
     end
@@ -23,7 +24,8 @@ describe Arrangement  do
 
   describe "average_expenses" do
     it "should return the average expenses over all the participants" do
-      participants = [double("Participant 1", :total_expenses => 251), double("Participant 2", :total_expenses => 320)]
+      participants = [double(:total_expenses => 251),
+                      double(:total_expenses => 320)]
       subject.stub(:participants => participants) 
       subject.average_expenses.should eql(285.5)
     end
@@ -33,5 +35,23 @@ describe Arrangement  do
       subject.average_expenses.should eql(0)
     end
   end 
+
+  describe "debitors" do
+    it "is empty when there are no participants" do
+      subject.stub(:participants => []) 
+      subject.debitors.should be_empty
+    end
+
+    it "it contains the participants with debt" do
+      participants = [double("Participant 1", :in_debt? => true),
+                      double("Participant 2", :in_debt? => false),
+                      double("Participant 3", :in_debt? => true)]
+      subject.stub(:participants => participants) 
+
+      expected = [participants[0], participants[2]]
+      subject.debitors.should eql(expected)
+    end 
+    
+  end
 
 end 
