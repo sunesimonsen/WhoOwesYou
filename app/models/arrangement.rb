@@ -28,4 +28,7 @@ class Arrangement < ActiveRecord::Base
     participants.find_all { |p| p.in_debt? }
   end 
     
+  def creditors
+    participants.find_all { |p| p.has_claim? }
+  end 
 end

@@ -38,9 +38,9 @@ describe Arrangement  do
 
   describe "debitors" do
     let(:participants) do
-      participants = [double("Participant 1", :in_debt? => true, :debt => 123),
+      participants = [double("Participant 1", :in_debt? => true,  :debt => 123),
                       double("Participant 2", :in_debt? => false, :debt => 0),
-                      double("Participant 3", :in_debt? => true, :debt => 23)]
+                      double("Participant 3", :in_debt? => true,  :debt => 23)]
     end 
 
     it "is empty when there are no participants" do
@@ -55,4 +55,22 @@ describe Arrangement  do
     end 
   end
 
+  describe "creditors" do
+    let(:participants) do
+      participants = [double("Participant 1", :has_claim? => true,  :claim => 123),
+                      double("Participant 2", :has_claim? => false, :claim => 0),
+                      double("Participant 3", :has_claim? => true,  :claim => 23)]
+    end 
+
+    it "is empty when there are no participants" do
+      subject.stub(:participants => []) 
+      subject.debitors.should be_empty
+    end
+
+    it "it contains the participants with claim" do
+      subject.stub(:participants => participants) 
+      expected = [participants[0], participants[2]]
+      subject.creditors.should eql(expected)
+    end 
+  end
 end 
