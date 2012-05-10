@@ -13,12 +13,12 @@ describe Arrangement  do
       participants = [double(:total_expenses => 250),
                       double(:total_expenses => 320)]
       subject.stub(:participants => participants) 
-      subject.total_expenses.should eql(570)
+      subject.total_expenses.should == 570
     end
 
     it "should return zero when no expenses are present" do
       subject.stub(:participants => []) 
-      subject.total_expenses.should eql(0)
+      subject.total_expenses.should == 0
     end
   end 
 
@@ -27,12 +27,12 @@ describe Arrangement  do
       participants = [double(:total_expenses => 251),
                       double(:total_expenses => 320)]
       subject.stub(:participants => participants) 
-      subject.average_expenses.should eql(285.5)
+      subject.average_expenses.should == 285.5
     end
 
     it "should return zero when no expenses are present" do
       subject.stub(:participants => []) 
-      subject.average_expenses.should eql(0)
+      subject.average_expenses.should == 0
     end
   end 
 
@@ -51,7 +51,7 @@ describe Arrangement  do
     it "it contains the participants with debt" do
       subject.stub(:participants => participants) 
       expected = [participants[0], participants[2]]
-      subject.debitors.should eql(expected)
+      subject.debitors.should == expected
     end 
   end
 
@@ -70,7 +70,7 @@ describe Arrangement  do
     it "it contains the participants with claim" do
       subject.stub(:participants => participants) 
       expected = [participants[0], participants[2]]
-      subject.creditors.should eql(expected)
+      subject.creditors.should == expected
     end 
   end
 end 

@@ -26,19 +26,19 @@ describe Participant do
 
   it "have the same name as its user" do
     subject.user.name = "user name"
-    subject.name.should eql("user name")
+    subject.name.should == "user name"
   end
 
   describe "total_expenses" do
     it "should return the sum of all expenses" do
       expenses = [double("Expense 1", :amount => 250), double("Expense 2", :amount => 100)]
       subject.stub(:expenses => expenses) 
-      subject.total_expenses.should eql(350)
+      subject.total_expenses.should == 350
     end
 
     it "should return zero when no expenses are present" do
       subject.stub(:expenses => []) 
-      subject.total_expenses.should eql(0)
+      subject.total_expenses.should == 0
     end
   end
 
@@ -46,13 +46,13 @@ describe Participant do
     it "should be zero if the total expenses is greater than or equal to the average expenses of the arrangement" do
       subject.arrangement.stub(:average_expenses => 100)
       subject.stub(:total_expenses => 101)
-      subject.debt.should eql(0)
+      subject.debt.should == 0
     end
 
     it "should be the difference between the total expenses and the average expenses of the arrangement" do
       subject.arrangement.stub(:average_expenses => 100)
       subject.stub(:total_expenses => 51)
-      subject.debt.should eql(49)
+      subject.debt.should == 49
     end
   end 
 
@@ -72,13 +72,13 @@ describe Participant do
     it "should be zero if the total expenses is less than or equal to the average expenses of the arrangement" do
       subject.arrangement.stub(:average_expenses => 100)
       subject.stub(:total_expenses => 34)
-      subject.claim.should eql(0)
+      subject.claim.should == 0
     end
 
     it "should be the difference between the total expenses and the average expenses of the arrangement" do
       subject.arrangement.stub(:average_expenses => 100)
       subject.stub(:total_expenses => 134)
-      subject.claim.should eql(34)
+      subject.claim.should == 34
     end
   end 
 
