@@ -80,7 +80,11 @@ describe Arrangement  do
       subject.settle_debt.should == []
     end
 
-    it "should return a list of transfers appropiate for settling the debt" do
+    it "all debt should be settled by returned transfers" do
+      pending
+    end
+
+    it "all claims should be fulfilled by returned transfers" do
       pending
     end
   end 
