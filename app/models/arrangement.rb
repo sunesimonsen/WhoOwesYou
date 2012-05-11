@@ -31,4 +31,8 @@ class Arrangement < ActiveRecord::Base
   def creditors
     participants.find_all { |p| p.has_claim? }
   end 
+
+  def settle_debt
+    []
+  end
 end

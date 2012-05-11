@@ -73,4 +73,15 @@ describe Arrangement  do
       subject.creditors.should == expected
     end 
   end
+
+  describe "settle_debt" do
+    it "should return no transfers if there are no participants" do
+      subject.stub(:participants => []) 
+      subject.settle_debt.should == []
+    end
+
+    it "should return a list of transfers appropiate for settling the debt" do
+      pending
+    end
+  end 
 end 
