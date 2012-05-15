@@ -1,5 +1,18 @@
 <div class="row">
-  <div class="span4 offset1">
+  <div class="span12">
+    <ul class="breadcrumb">
+      <li>
+        <a href="<%=arrangements_path%>">Home</a> <span class="divider">/</span>
+      </li>
+      <li>
+        <a href="<%=arrangement_path(@arrangement)%>"><%= @arrangement.name %></a> <span class="divider">/</span>
+      </li>
+      <li class="active"><%= @participant.name %></li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="span4">
     <div class="well">
       <h2><%= @participant.name =%></h2>
       <dl class="dl-horizontal">
@@ -17,7 +30,8 @@
       of type and scrambled it to make a type specimen book.
     </div> 
   </div><!--/span-->
-  <div class="span6 expenses">
+  <div class="span8 expenses">
+    <% if not @participant.expenses.empty? %>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
@@ -43,6 +57,12 @@
         <% end %>
       </tbody>
     </table>
+    <% else %>
+    <div class="alert alert-info">
+      <h3>This participant has no expenses</h3>
+      You can add expense to this participant using the form below. Just enter the name and cost of the expense.
+    </div>
+    <% end %>
     <%= form_tag(arrangement_participant_expenses_path(@arrangement, @participant), :class => "well form-inline") do %>
     <h6>Add Expense</h6>
     <input type="text" class="input-large" name="name" placeholder="Expense name">

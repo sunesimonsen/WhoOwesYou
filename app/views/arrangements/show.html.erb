@@ -1,4 +1,14 @@
 <div class="row">
+  <div class="span12">
+    <ul class="breadcrumb">
+      <li>
+        <a href="<%=arrangements_path%>">Home</a> <span class="divider">/</span>
+      </li>
+      <li class="active"><%= @arrangement.name %></li>
+    </ul>
+  </div>
+</div>
+<div class="row">
   <div class="span4">
     <div class="well">
       <h2><%= @arrangement.name =%>
