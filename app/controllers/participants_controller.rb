@@ -14,6 +14,7 @@ class ParticipantsController < ApplicationController
     arrangement = Arrangement.find(params[:arrangement_id])
     participant = arrangement.participants.find(params[:id])
     participant.destroy
+    flash[:success] = "Participant was succesfully deleted."
     redirect_to arrangement_path(arrangement)
   end 
 end
