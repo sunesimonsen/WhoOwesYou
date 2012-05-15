@@ -1,7 +1,8 @@
 class Arrangement < ActiveRecord::Base
   set_primary_key :uuid
 
-  has_many :participants, :primary_key => 'uuid', :foreign_key => 'arrangement_uuid'
+  has_many :participants, :primary_key => 'uuid',
+    :foreign_key => 'arrangement_uuid', :dependent => :delete_all
 
   validates :name, :presence => true
 
