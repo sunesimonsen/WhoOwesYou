@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120509085122) do
   end
 
   create_table "participants", :force => true do |t|
-    t.integer  "user_id",          :null => false
+    t.string   "name",             :null => false
     t.string   "arrangement_uuid", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"

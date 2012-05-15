@@ -1,12 +1,9 @@
 class Participant < ActiveRecord::Base
   belongs_to :arrangement, :primary_key => 'uuid', :foreign_key => 'arrangement_uuid'
-  belongs_to :user
   has_many :expenses, :dependent => :delete_all
 
-  validates :user_id, :presence => true
+  validates :name, :presence => true
   validates :arrangement_uuid, :presence => true
-
-  delegate :name, :to => :user
 
   def total_expenses
     expenses.inject(0) { |sum,e| sum + e.amount }

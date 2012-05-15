@@ -8,38 +8,20 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 fun = Arrangement.find_by_name("Fun")
-if 
+if fun 
     fun.destroy
 end
 
-
-sune = User.create :name => "Sune Simonsen"
-dan = User.create :name => "Dan Søndergaard"
-
 fun = Arrangement.create :name => "Fun"
 
-participant = Participant.new
-participant.user_id = sune.id
-participant.arrangement_uuid = fun.uuid
-participant.save
+sune = fun.participants.build(:name => "Sune Simonsen")
+sune.save
+sune.expenses.build(:name => "Beer", :amount => 1000).save
+sune.expenses.build(:name => "Chips", :amount => 300).save
 
-beer = Expense.new(:name => "Beer", :amount => 1000)
-beer.participant_id = participant.id
-beer.save
+dan = fun.participants.build(:name => "Dan Søndergaard")
+dan.save
+dan.expenses.build(:name => "Kayak", :amount => 2400).save
+dan.expenses.build(:name => "Sandwiches", :amount => 450).save
 
-chips = Expense.new(:name => "Chips", :amount => 300)
-chips.participant_id = participant.id
-chips.save
-
-participant = Participant.new
-participant.user_id = dan.id
-participant.arrangement_uuid = fun.uuid
-participant.save
-
-beer = Expense.new(:name => "Kayak", :amount => 2400)
-beer.participant_id = participant.id
-beer.save
-
-chips = Expense.new(:name => "Sandwiches", :amount => 450)
-chips.participant_id = participant.id
-chips.save
+fun.save

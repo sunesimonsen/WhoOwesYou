@@ -6,7 +6,7 @@ class ParticipantsController < ApplicationController
 
   def create
     arrangement = Arrangement.find(params[:arrangement_id])
-    arrangement.participants.build(:name => params[:name]);
+    arrangement.participants.build(:name => params[:name]).save;
     redirect_to arrangement_path(arrangement)
   end
 end
