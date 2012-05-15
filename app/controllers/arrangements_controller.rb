@@ -8,6 +8,7 @@ class ArrangementsController < ApplicationController
 
   def create
     arrangement = Arrangement.create :name => params[:name]
+    flash[:success] = "Arrangement was succesfully created."
     redirect_to arrangement_path(arrangement)
   end
 

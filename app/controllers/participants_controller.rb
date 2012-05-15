@@ -6,7 +6,13 @@ class ParticipantsController < ApplicationController
 
   def create
     arrangement = Arrangement.find(params[:arrangement_id])
-    arrangement.participants.build(:name => params[:name]).save;
+    participant = arrangement.participants.build(:name => params[:name]);
+    if participant.save
+      flash[:success] = "Participant was succesfully created."
+    else 
+      errors = participant.errors
+      flash[:error] = errors.empty? ? "Error" : errors.full_messages.to_sentence
+    end
     redirect_to arrangement_path(arrangement)
   end
 

@@ -38,11 +38,13 @@
           </tr>
         </thead>
         <tbody>
-          <% @participants.each do |p| %>
-          <tr onclick="location.href='<%= arrangement_participant_path(@arrangement, p) %>'" class="clickable">
-            <td><%= p.name %></td>
-            <td class="number"><%= p.total_expenses %></td>
-            <td class="number">
+          <% @participants.each do |p|
+             onclick = "location.href='#{arrangement_participant_path(@arrangement, p)}'"
+             %>
+          <tr >
+            <td onclick="<%= onclick %>" class="clickable"><%= p.name %></td>
+            <td onclick="<%= onclick %>" class="clickable number"><%= p.total_expenses %></td>
+            <td onclick="<%= onclick %>" class="clickable number">
               <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
                 <%= p.balance %>
               </span>
