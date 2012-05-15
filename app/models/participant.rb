@@ -34,4 +34,8 @@ class Participant < ActiveRecord::Base
   def has_claim?
     claim > 0
   end 
+
+  def balance
+    total_expenses - arrangement.average_expenses 
+  end
 end
