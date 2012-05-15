@@ -1,5 +1,25 @@
 <div class="row">
-  <div class="span4 offset1">
+  <div class="offset1 span6">
+    <section id="participants">
+    <ul class="nav nav-tabs nav-stacked">
+      <% @participants.each do |p| %>
+      <li>
+        <a href="<%= arrangement_participant_path(@arrangement, p) %>"><%= p.name %>
+          <span class="pull-right"><%= p.total_expenses %></span>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+    <%= form_tag(arrangement_participants_path(@arrangement), :class => "well form-inline") do %>
+        <%= label_tag("name", "Add participant:") %>
+        <div class="input-append">
+          <input type="text" name="name" placeholder="Participant name"><button type="submit" class="btn btn-primary">
+            <i class="icon-plus"></i></button>
+        </div>
+    <% end %>
+    </section>
+  </div><!--/span-->
+  <div class="span4">
     <div class="well">
       <h2><%= @arrangement.name =%>
         <small class="pull-right"><%= @arrangement.total_expenses %></small>
@@ -14,40 +34,5 @@
       text ever since the 1500s, when an unknown printer took a galley
       of type and scrambled it to make a type specimen book.
     </div> 
-    <div class="well">
-      <h2>New Participant</h2>
-      <form class="form-inline">
-        <input type="text" class="input-medium" placeholder="Participant name">
-        <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Create</button>
-      </form>
-    </div> 
-  </div><!--/span-->
-  <div class="span6">
-
-    <div class="participants">
-      <% @participants.each do |p| %>
-      
-      <div class="participant">
-        <div class="header">
-          <h3><%= p.name %>
-            <span class="pull-right"><%= p.total_expenses %></span>
-          </h3>
-        </div>
-        <div class="expenses">
-          <h4>Expenses</h4>
-          <table class="">
-            <tbody>
-              <% p.expenses.each do |e| %>
-              <tr>
-                <th><%= e.name %></th>
-                <td><%= e.amount %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div><!--/row-->
-      <% end %>
-    </div>
   </div><!--/span-->
 </div><!--/row-->

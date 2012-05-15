@@ -1,0 +1,48 @@
+@active-color: #467;
+@line-style: solid thin @tableBorder;
+
+.participant.details {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &:first-child {
+        margin-top: 0px;
+    }
+    &:last-child {
+        margin-bottom: 0px;
+    }
+    .header {
+        padding: 10px;
+        color: @white;
+        #gradient > .vertical(lighten(@active-color, 10%), @active-color);
+    }
+    .expenses {
+        padding: 25px;
+        h4 {
+            color: @grayLight;
+        }
+        table {
+            width: 100%;
+            th, td {
+                border: none;
+            }
+            th {
+                text-align: left;
+            }
+            td {
+                text-align: right;
+            }
+        }
+    }
+    .footer {
+        padding: 14px 15px 15px;
+        border-top: @line-style;
+        background-color: whiteSmoke;
+        box-shadow: inset 0 1px 0 #ffffff;
+        .border-radius(0px 0px 4px 4px);
+        text-align: right; 
+    }
+    box-shadow: 2px 2px 2px 2px @grayLighter;
+    border: thin solid @active-color;
+    .border-radius(4px);
+}
+

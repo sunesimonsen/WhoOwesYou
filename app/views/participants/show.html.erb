@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="span4 offset1">
+    <div class="well">
+      <h2><%= @arrangement.name =%>
+        <small class="pull-right"><%= @arrangement.total_expenses %></small>
+      </h2>
+      Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry.
+    </div>
+    <div class="well">
+      <h2>Help</h2>
+      Lorem Ipsum is simply dummy text of the printing and typesetting
+      industry. Lorem Ipsum has been the industry's standard dummy
+      text ever since the 1500s, when an unknown printer took a galley
+      of type and scrambled it to make a type specimen book.
+    </div> 
+  </div><!--/span-->
+  <div class="span6">
+    <div class="participant details">
+      <div class="header">
+        <h3><%= @participant.name %>
+          <span class="pull-right"><%= @participant.total_expenses %></span>
+        </h3>
+      </div>
+      <div class="expenses">
+        <h4>Expenses</h4>
+        <table class="">
+          <tbody>
+            <% @participant.expenses.each do |e| %>
+            <tr>
+              <th><%= e.name %></th>
+              <td><%= e.amount %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div><!--/row-->
+  </div><!--/span-->
+</div><!--/row-->
