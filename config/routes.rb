@@ -57,7 +57,9 @@ WhoOwesYou::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 
   resources :arrangements do
-    resources :participants
+    resources :participants do
+      resources :expenses 
+    end 
   end
   root :to => 'arrangements#index'
 end

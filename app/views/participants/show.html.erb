@@ -1,11 +1,13 @@
 <div class="row">
   <div class="span4 offset1">
     <div class="well">
-      <h2><%= @arrangement.name =%>
-        <small class="pull-right"><%= @arrangement.total_expenses %></small>
-      </h2>
-      Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry.
+      <h2><%= @participant.name =%></h2>
+      <dl class="dl-horizontal">
+        <dt>Total expenses:</dt>
+        <dd><%= @participant.total_expenses %></dd>
+        <dt>Balance:</dt>
+        <dd><%= @participant.balance %></dd>
+      </dl>
     </div>
     <div class="well">
       <h2>Help</h2>
@@ -15,26 +17,37 @@
       of type and scrambled it to make a type specimen book.
     </div> 
   </div><!--/span-->
-  <div class="span6">
-    <div class="participant details">
-      <div class="header">
-        <h3><%= @participant.name %>
-          <span class="pull-right"><%= @participant.total_expenses %></span>
-        </h3>
-      </div>
-      <div class="expenses">
-        <h4>Expenses</h4>
-        <table class="">
-          <tbody>
-            <% @participant.expenses.each do |e| %>
-            <tr>
-              <th><%= e.name %></th>
-              <td><%= e.amount %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div><!--/row-->
+  <div class="span6 expenses">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Amount</th>
+          <th class="collapsed"><i class="icon-cog"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @participant.expenses.each do |e| %>
+        <tr>
+          <td><%= e.name %></td>
+          <td>
+            <%= e.amount %>
+          </td>
+          <td>
+            <%= link_to(arrangement_participant_expense_path(@arrangement, @participant, e),
+                :confirm => 'Are you sure?', :method => :delete) do %>
+            <i class="icon-trash"></i>
+            <% end %> 
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= form_tag(arrangement_participant_expenses_path(@arrangement, @participant), :class => "well form-inline") do %>
+    <h6>Add Expense</h6>
+    <input type="text" class="input-large" name="name" placeholder="Expense name">
+    <input type="text" class="input-small" name="amount" placeholder="Amount">
+    <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
+    <% end %>
   </div><!--/span-->
 </div><!--/row-->
