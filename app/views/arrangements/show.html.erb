@@ -33,6 +33,7 @@
             <th>Name</th>
             <th>Expenses</th>
             <th>Balance</th>
+            <th class="collapsed"><i class="icon-cog"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +45,12 @@
               <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
                 <%= p.balance %>
               </span>
+            </td>
+            <td>
+              <%= link_to(arrangement_participant_path(@arrangement, p),
+                  :confirm => 'Are you sure?', :method => :delete) do %>
+              <i class="icon-trash"></i>
+              <% end %> 
             </td>
           </tr>
           <% end %>
