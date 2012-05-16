@@ -61,14 +61,14 @@
     <% else %>
     <div class="alert alert-info">
       <h3>This participant has no expenses</h3>
-      You can add expense to this participant using the form below. Just enter the name and cost of the expense.
+      You can add new expenses using the form below. Just enter the name and cost of the expense and click add.
     </div>
     <% end %>
-    <%= form_tag(arrangement_participant_expenses_path(@arrangement, @participant), :class => "well form-inline") do %>
+    <%= form_for([@arrangement, @participant, @expense], :html => {:class => "well form-inline"}) do |f| %>
     <h6>Add Expense</h6>
-    <input type="text" class="input-medium" name="name" placeholder="Expense name">
-    <input type="text" class="input-small" name="amount" placeholder="Amount">
-    <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
+        <%= f.text_field :name, :placeholder => "Expense name", :class => "input-medium" %>
+        <%= f.text_field :amount, :placeholder => "Amount", :class => "input-small" %>
+        <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
     <% end %>
   </div><!--/span-->
 </div><!--/row-->

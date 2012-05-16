@@ -2,11 +2,12 @@ class ParticipantsController < ApplicationController
   def show
     @arrangement = Arrangement.find(params[:arrangement_id])
     @participant = @arrangement.participants.find(params[:id])
+    @expense = Expense.new
   end
 
   def create
     arrangement = Arrangement.find(params[:arrangement_id])
-    participant = arrangement.participants.build(:name => params[:name]);
+    participant = arrangement.participants.build(params[:participant]);
     if participant.save
       flash[:success] = "Participant was succesfully created."
     else 

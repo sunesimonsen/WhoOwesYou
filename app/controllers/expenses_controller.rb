@@ -12,8 +12,7 @@ class ExpensesController < ApplicationController
   def create
     arrangement = Arrangement.find(params[:arrangement_id])
     participant = arrangement.participants.find(params[:participant_id])
-    expense = participant.expenses.build(:name => params[:name], :amount => params[:amount])
-
+    expense = participant.expenses.build(params[:expense])
     if expense.save
       flash[:success] = "Expense was succesfully created."
     else 

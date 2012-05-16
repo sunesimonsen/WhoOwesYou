@@ -4,6 +4,7 @@ class ArrangementsController < ApplicationController
   def show
     @arrangement = Arrangement.find params[:id]
     @participants = @arrangement.participants
+    @participant = Participant.new
   end
 
   def create
