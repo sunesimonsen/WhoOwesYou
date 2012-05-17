@@ -1,33 +1,20 @@
 require 'spec_helper' 
 
 describe Participant do
-  fixtures :users, :arrangements
+  fixtures :arrangements
 
   before(:each) do
-    subject.user = users :john
+    subject.name = "John"
     subject.arrangement = arrangements :party
-  end 
-
-  it "requires an user to be valid" do
-    subject.user = nil
-    subject.should_not be_valid
-    subject.user = users :john
-    subject.arrangement = arrangements :party
-    subject.should be_valid
   end 
 
   it "requires an arrangement to be valid" do
     subject.arrangement = nil
     subject.should_not be_valid
-    subject.user = users :john
+    subject.name = "John"
     subject.arrangement = arrangements :party
     subject.should be_valid
   end 
-
-  it "have the same name as its user" do
-    subject.user.name = "user name"
-    subject.name.should == "user name"
-  end
 
   describe "total_expenses" do
     it "should return the sum of all expenses" do
@@ -94,4 +81,11 @@ describe Participant do
     end 
   end 
 
+  describe "balance" do
+    it "should be total expenses subtracted the average expenses for the arrangement" do
+      subject.arrangement.stub(:average_expenses => 100)
+      subject.stub(:total_expenses => 34)
+      subject.balance.should == -66
+    end 
+  end 
 end 
