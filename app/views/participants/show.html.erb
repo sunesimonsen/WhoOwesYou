@@ -20,7 +20,11 @@
         <dt>Total expenses:</dt>
         <dd><%= @participant.total_expenses %></dd>
         <dt>Balance:</dt>
-        <dd><%= @participant.balance %></dd>
+        <dd>
+          <span class="badge badge-<%= @participant.in_debt? ? 'important' : 'success' %>">
+            <%= @participant.balance %>
+          </span>
+        </dd>
       </dl>
     </div>
     <div class="well">
