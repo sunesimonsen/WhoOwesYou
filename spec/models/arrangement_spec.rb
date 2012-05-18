@@ -38,9 +38,9 @@ describe Arrangement  do
 
   describe "debitors" do
     let(:participants) do
-      participants = [double("Participant 1", :in_debt? => true,  :debt => 123),
-                      double("Participant 2", :in_debt? => false, :debt => 0),
-                      double("Participant 3", :in_debt? => true,  :debt => 23)]
+      participants = [double(:name => "Participant 1", :in_debt? => true,  :debt => 123),
+                      double(:name => "Participant 2", :in_debt? => false, :debt => 0),
+                      double(:name => "Participant 3", :in_debt? => true,  :debt => 23)]
     end 
 
     it "is empty when there are no participants" do
@@ -50,16 +50,16 @@ describe Arrangement  do
 
     it "it contains the participants with debt" do
       subject.stub(:participants => participants) 
-      expected = [participants[0], participants[2]]
-      subject.debitors.should == expected
+      expected = ["Participant 1", "Participant 3"]
+      subject.debitors.map(&:name).should == expected
     end 
   end
 
   describe "creditors" do
     let(:participants) do
-      participants = [double("Participant 1", :has_claim? => true,  :claim => 123),
-                      double("Participant 2", :has_claim? => false, :claim => 0),
-                      double("Participant 3", :has_claim? => true,  :claim => 23)]
+      participants = [double(:name => "Participant 1", :has_claim? => true,  :claim => 123),
+                      double(:name => "Participant 2", :has_claim? => false, :claim => 0),
+                      double(:name => "Participant 3", :has_claim? => true,  :claim => 23)]
     end 
 
     it "is empty when there are no participants" do
@@ -69,8 +69,8 @@ describe Arrangement  do
 
     it "it contains the participants with claim" do
       subject.stub(:participants => participants) 
-      expected = [participants[0], participants[2]]
-      subject.creditors.should == expected
+      expected = ["Participant 1", "Participant 3"]
+      subject.creditors.map(&:name).should == expected
     end 
   end
 

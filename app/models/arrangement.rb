@@ -26,11 +26,13 @@ class Arrangement < ActiveRecord::Base
   end 
 
   def debitors
-    participants.find_all { |p| p.in_debt? }
+    participants_in_debt = participants.find_all { |p| p.in_debt? }
+    participants_in_debt.map { |p| Debitor.new(p) }
   end 
     
   def creditors
-    participants.find_all { |p| p.has_claim? }
+    participants_with_claim = participants.find_all { |p| p.has_claim? }
+    participants_with_claim.map { |p| Creditor.new(p) }
   end 
 
   def settle_debt
