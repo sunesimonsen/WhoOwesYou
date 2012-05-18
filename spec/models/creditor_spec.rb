@@ -8,6 +8,7 @@ describe "Creditor" do
         transfer = subject.collect_debt debitor
 
         subject.claim.should == 40
+        subject.has_claim?.should be_true
         debitor.debt.should == 0
         transfer.from.name.should == "Debitor"
         transfer.to.name.should == "Creditor"

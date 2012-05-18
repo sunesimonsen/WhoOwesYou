@@ -7,6 +7,10 @@ class Creditor
     @claim = participant.claim
   end
 
+  def has_claim?
+    @claim > 0
+  end 
+
   def collect_debt debitor
     transfer_amount = debitor.debt < claim ? debitor.debt : claim
     @claim = @claim - transfer_amount
