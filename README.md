@@ -1,4 +1,4 @@
-=Who Owes You?
+# Who Owes You?
 
 A Rails app to settle debt between multiple parties.
 
