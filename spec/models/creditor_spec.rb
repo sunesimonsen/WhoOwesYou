@@ -1,3 +1,5 @@
+require 'spec_helper' 
+
 describe "Creditor" do
   let(:subject) { Creditor.new double(:name => "Creditor", :claim => 120) }
 
