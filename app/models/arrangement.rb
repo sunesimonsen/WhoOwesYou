@@ -38,7 +38,7 @@ class Arrangement < ActiveRecord::Base
   end 
 
   def settle_debt
-    transfers = Set.new
+    transfers = Transfers.new
     debitors_with_debt = debitors
     creditors.each do |creditor|
       while creditor.has_claim?

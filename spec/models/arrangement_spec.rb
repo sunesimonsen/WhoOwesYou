@@ -82,23 +82,17 @@ describe Arrangement  do
 
     it "should return no transfers if there are no participants" do
       subject.stub(:participants => []) 
-      subject.settle_debt.should == Set.new
+      subject.settle_debt.empty?.should be_true
     end
 
     it "all debt should be settled by returned transfers" do
       subject.stub(:creditors => [Creditor.new(ethan)])
       subject.stub(:debitors => [Debitor.new(john), Debitor.new(daniel)])
-      transfers = subject.settle_debt()
+      transfers = subject.settle_debt
 
-      expected = Set.new 
-      expected << Transfer.new(:amount => 50, :from => john, :to => ethan)
-      expected << Transfer.new(:amount => 30, :from => daniel, :to => ethan)
-
-      transfers.should == expected 
-    end
-
-    it "all claims should be fulfilled by returned transfers" do
-      pending
+      transfers.from(john).amount.should == 50
+      transfers.from(daniel).amount.should == 30
+      transfers.to(ethan).amount.should == 80
     end
 
     it "throws an error if the claim is bigger than the debt" do
