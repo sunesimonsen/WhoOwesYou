@@ -91,6 +91,8 @@ describe Arrangement  do
       subject.stub(:debitors => [Debitor.new(john), Debitor.new(daniel)])
       transfers = subject.settle_debt
 
+      transfers.amount.should == 100
+
       transfers.from(john).amount.should == 60
       transfers.from(daniel).amount.should == 40
       transfers.to(ethan).amount.should == 80
