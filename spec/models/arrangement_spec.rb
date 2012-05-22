@@ -1,4 +1,5 @@
 require 'spec_helper' 
+require 'set'
 
 describe Arrangement  do
 
@@ -75,17 +76,38 @@ describe Arrangement  do
   end
 
   describe "settle_debt" do
+    let(:ethan) {double(:name => "Ethan", :has_claim? => true,  :claim => 80)} 
+    let(:john) {double(:name => "John", :in_debt? => true, :debt => 50)}
+    let(:daniel) {double(:name => "Daniel", :in_debt? => true,  :debt => 30)}
+
     it "should return no transfers if there are no participants" do
       subject.stub(:participants => []) 
-      subject.settle_debt.should == []
+      subject.settle_debt.should == Set.new
     end
 
     it "all debt should be settled by returned transfers" do
-      pending
+      subject.stub(:creditors => [Creditor.new(ethan)])
+      subject.stub(:debitors => [Debitor.new(john), Debitor.new(daniel)])
+      transfers = subject.settle_debt()
+
+      expected = Set.new 
+      expected << Transfer.new(:amount => 50, :from => john, :to => ethan)
+      expected << Transfer.new(:amount => 30, :from => daniel, :to => ethan)
+
+      transfers.should == expected 
     end
 
     it "all claims should be fulfilled by returned transfers" do
       pending
     end
+
+    it "throws an error if the claim is bigger than the debt" do
+      pending
+    end
+
+    it "throws an error if the debt is bigger than the claim" do
+      pending
+    end
   end 
+
 end 

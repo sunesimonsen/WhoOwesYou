@@ -1,3 +1,5 @@
+require 'set'
+
 class Arrangement < ActiveRecord::Base
   set_primary_key :uuid
 
@@ -36,6 +38,20 @@ class Arrangement < ActiveRecord::Base
   end 
 
   def settle_debt
-    []
+    transfers = Set.new
+    debitors_with_debt = debitors
+    creditors.each do |creditor|
+      while creditor.has_claim?
+        debitor = debitors_with_debt.pop
+        transfer = creditor.collect_debt debitor
+        transfers << transfer
+      end 
+
+      if debitor.in_debt?
+        debitors_with_debt << debitor
+      end 
+
+    end
+    transfers
   end
 end

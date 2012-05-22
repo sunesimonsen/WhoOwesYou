@@ -7,4 +7,8 @@ class Debitor
     @participant = participant
     @debt = participant.debt
   end
+
+  def in_debt?
+    @debt > 0
+  end
 end 
