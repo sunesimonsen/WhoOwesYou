@@ -77,8 +77,9 @@ describe Arrangement  do
 
   describe "settle_debt" do
     let(:ethan) {double(:name => "Ethan", :has_claim? => true,  :claim => 80)} 
-    let(:john) {double(:name => "John", :in_debt? => true, :debt => 50)}
-    let(:daniel) {double(:name => "Daniel", :in_debt? => true,  :debt => 30)}
+    let(:michael) {double(:name => "Michael", :has_claim? => true,  :claim => 20)} 
+    let(:john) {double(:name => "John", :in_debt? => true, :debt => 60)}
+    let(:daniel) {double(:name => "Daniel", :in_debt? => true,  :debt => 40)}
 
     it "should return no transfers if there are no participants" do
       subject.stub(:participants => []) 
@@ -86,13 +87,14 @@ describe Arrangement  do
     end
 
     it "all debt should be settled by returned transfers" do
-      subject.stub(:creditors => [Creditor.new(ethan)])
+      subject.stub(:creditors => [Creditor.new(ethan), Creditor.new(michael)])
       subject.stub(:debitors => [Debitor.new(john), Debitor.new(daniel)])
       transfers = subject.settle_debt
 
-      transfers.from(john).amount.should == 50
-      transfers.from(daniel).amount.should == 30
+      transfers.from(john).amount.should == 60
+      transfers.from(daniel).amount.should == 40
       transfers.to(ethan).amount.should == 80
+      transfers.to(michael).amount.should == 20
     end
 
     it "throws an error if the claim is bigger than the debt" do
