@@ -87,7 +87,7 @@ describe Arrangement  do
     end
 
     it "all debt should be settled by returned transfers" do
-      subject.stub(:creditors => [Creditor.new(ethan), Creditor.new(michael)])
+      subject.stub(:creditors => [Creditor.new(michael), Creditor.new(ethan)])
       subject.stub(:debitors => [Debitor.new(john), Debitor.new(daniel)])
       transfers = subject.settle_debt
 
@@ -97,6 +97,8 @@ describe Arrangement  do
       transfers.from(daniel).amount.should == 40
       transfers.to(ethan).amount.should == 80
       transfers.to(michael).amount.should == 20
+
+      transfers.count.should == 3
     end
 
     it "throws an error if the claim is bigger than the debt" do
