@@ -20,11 +20,8 @@ class Arrangement < ActiveRecord::Base
 
   def average_expenses
     count = participants.count 
-    if count > 0
-      total_expenses / participants.count.to_d
-    else
-      0
-    end 
+    return 0 if count <= 0
+    total_expenses / count.to_d
   end 
 
   def debitors
