@@ -15,7 +15,7 @@ class Arrangement < ActiveRecord::Base
   end
 
   def total_expenses
-    participants.inject(0) { |sum, p| p.total_expenses + sum }
+    participants.map(&:total_expenses).inject(0,&:+)
   end 
 
   def average_expenses

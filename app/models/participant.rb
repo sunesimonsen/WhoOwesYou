@@ -6,7 +6,7 @@ class Participant < ActiveRecord::Base
   validates :arrangement_uuid, :presence => true
 
   def total_expenses
-    expenses.inject(0) { |sum,e| sum + e.amount }
+    expenses.map(&:amount).inject(0,&:+)
   end
 
   def debt

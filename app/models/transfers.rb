@@ -2,7 +2,7 @@ require 'set'
 
 class Transfers < Set
   def amount
-    map { |t| t.amount }.inject(&:+)
+    map(&:amount).inject(0,&:+)
   end
     
   def from participant
