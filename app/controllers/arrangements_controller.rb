@@ -13,6 +13,15 @@ class ArrangementsController < ApplicationController
     redirect_to arrangement_path(arrangement)
   end
 
+  def update
+    arrangement = Arrangement.find params[:id]
+    unless arrangement.update_attributes(params[:arrangement])
+      errors = participant.errors
+      flash[:error] = errors.empty? ? "Error" : errors.full_messages.to_sentence
+    end
+    redirect_to arrangement_path(arrangement)
+  end 
+
   private
 
   def resolve_layout

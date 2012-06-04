@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120509085122) do
+ActiveRecord::Schema.define(:version => 20120604170138) do
 
   create_table "arrangements", :id => false, :force => true do |t|
     t.string   "uuid"
-    t.string   "name",       :null => false
+    t.string   "name",                          :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "done",       :default => false
   end
 
   create_table "expenses", :force => true do |t|

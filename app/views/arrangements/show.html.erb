@@ -11,12 +11,22 @@
 <%= render "shared/notifications" %>
 <div class="row">
   <div class="span4">
-    <div class="well">
+    <div id="arrangement-information" class="well">
       <h2><%= @arrangement.name =%>
         <small class="pull-right"><%= @arrangement.total_expenses %></small>
       </h2>
+      <p>
       Lorem Ipsum is simply dummy text of the printing and typesetting
       industry.
+      <%
+         done = @arrangement.done?
+         label = done ? "Reopen arrangement" : "Information Completed"
+      %>
+      <%= form_for(@arrangement) do |f| %>
+      <%= f.hidden_field(:done, :value => done ? "false" : "true") %>
+      <button type="submit" class="btn btn-<%= done ? "danger" : "success"%> btn-large"><i class="icon-<%= done ? "warning-sign" : "ok" %>"></i> <%=label%></button>
+      <% end %>
+      </p>
     </div>
     <div class="well hidden-phone">
       <h2>Help</h2>
