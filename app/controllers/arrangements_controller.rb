@@ -8,7 +8,7 @@ class ArrangementsController < ApplicationController
     @participant = Participant.new
 
     if @done
-      @transfers = @arrangement.settle_debt
+      @transfers = @arrangement.settle_debt.sort_by { |t| [t.from.name, t.to.name] }
       render "done"
     else
       render "show"
