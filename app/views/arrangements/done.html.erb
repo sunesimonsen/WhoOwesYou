@@ -54,9 +54,9 @@
         <tbody>
         <% @transfers.each do |t| %>
         <tr>
-          <td><%= t.from.name %></td>
+          <td onclick="location.href='<%= arrangement_participant_path(@arrangement, t.from) %>'" class="clickable"><%= t.from.name %></td>
           <td><%= t.amount %></td>
-          <td><%= t.to.name %></td>
+          <td onclick="location.href='<%= arrangement_participant_path(@arrangement, t.to) %>'" class="clickable"><%= t.to.name %></td>
         </tr>
         <% end %>
         </tbody>
