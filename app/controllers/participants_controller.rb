@@ -1,8 +1,15 @@
 class ParticipantsController < ApplicationController
   def show
     @arrangement = Arrangement.find(params[:arrangement_id])
+    @done = @arrangement.done?
     @participant = @arrangement.participants.find(params[:id])
     @expense = Expense.new
+
+    if @done
+      render "done"
+    else
+      render "show"
+    end 
   end
 
   def create
