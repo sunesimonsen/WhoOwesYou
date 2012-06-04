@@ -3,8 +3,16 @@ class ArrangementsController < ApplicationController
 
   def show
     @arrangement = Arrangement.find params[:id]
+    @done = @arrangement.done?
     @participants = @arrangement.participants
     @participant = Participant.new
+
+    if @done
+      @transfers = @arrangement.settle_debt
+      render "done"
+    else
+      render "show"
+    end 
   end
 
   def create
