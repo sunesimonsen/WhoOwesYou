@@ -21,10 +21,17 @@
       <%
          done = @arrangement.done?
          label = done ? "Reopen arrangement" : "Information Completed"
+         icon = done ? "icon-warning-sign" : "icon-ok"
+         button_style = done ? "btn-danger" : "btn-success"
+         value = done ? "false" : "true"
+         options = { :class => "btn #{button_style} btn-large" }
+         options[:confirm] = "Are you sure you want to reopen the arrangement?" if done 
       %>
       <%= form_for(@arrangement) do |f| %>
-      <%= f.hidden_field(:done, :value => done ? "false" : "true") %>
-      <button type="submit" class="btn btn-<%= done ? "danger" : "success"%> btn-large"><i class="icon-<%= done ? "warning-sign" : "ok" %>"></i> <%=label%></button>
+        <%= f.hidden_field(:done, :value => value) %>
+        <%= button_tag(options) do %>
+          <i class="<%=icon%>"></i> <%=label%>
+        <% end %>
       <% end %>
       </p>
     </div>
