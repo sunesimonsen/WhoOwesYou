@@ -2,10 +2,7 @@
   <div class="span12">
     <ul class="breadcrumb">
       <li>
-        <i class="icon-home"></i> <a href="<%=arrangements_path%>">Home</a> <span class="divider">/</span>
-      </li>
-      <li>
-        <a href="<%=arrangement_path(@arrangement)%>"><%= @arrangement.name %></a> <span class="divider">/</span>
+        <i class="icon-home"></i> <a href="<%=arrangement_path(@arrangement)%>"><%= @arrangement.name %></a> <span class="divider">/</span>
       </li>
       <li class="active"><%= @participant.name %></li>
     </ul>
@@ -72,7 +69,7 @@
     <h6>Add Expense</h6>
         <%= f.text_field :name, :placeholder => "Expense name", :class => "input-medium" %>
         <%= f.text_field :amount, :placeholder => "Amount", :class => "input-small" %>
-        <button type="submit" class="btn btn-primary">Add <i class="icon-plus"></i></button>
+        <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
     <% end %>
   </div><!--/span-->
 </div><!--/row-->

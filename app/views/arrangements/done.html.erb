@@ -1,10 +1,7 @@
 <div class="row">
   <div class="span12">
     <ul class="breadcrumb">
-      <li>
-        <i class="icon-home"></i> <a href="<%=arrangements_path%>">Home</a> <span class="divider">/</span>
-      </li>
-      <li class="active"><%= @arrangement.name %></li>
+      <li class="active"><i class="icon-home"></i> <%= @arrangement.name %></li>
     </ul>
   </div>
 </div>
@@ -21,7 +18,7 @@
       <%= form_for(@arrangement) do |f| %>
         <%= f.hidden_field(:done, :value => "false") %>
         <%= button_tag(:class => "btn btn-danger btn-large", :confirm => "Are you sure you want to reopen the arrangement?") do %>
-          Reopen arrangement <i class="icon-warning-sign"></i>
+          <i class="icon-warning-sign"></i> Reopen arrangement 
         <% end %>
       <% end %>
       </p>
