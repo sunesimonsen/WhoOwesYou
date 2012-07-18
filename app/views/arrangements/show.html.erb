@@ -21,7 +21,7 @@
       <%= form_for(@arrangement) do |f| %>
         <%= f.hidden_field(:done, :value => "true") %>
         <%= button_tag(:class => "btn btn-success btn-large") do %>
-          <i class="icon-ok"></i> Information Completed
+          Information Completed <i class="icon-ok"></i>
         <% end %>
       <% end %>
       </p>
@@ -77,7 +77,7 @@
       <%= form_for([@arrangement, @participant], :html => {:class => "well form-inline"}) do |f| %>
         <h6>Add participant</h6>
         <%= f.text_field :name, :placeholder => "Participant name" %>
-        <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
+        <button type="submit" class="btn btn-primary">Add <i class="icon-plus"></i></button>
       <% end %>
     </section>
   </div><!--/span-->

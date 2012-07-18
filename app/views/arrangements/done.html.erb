@@ -21,7 +21,7 @@
       <%= form_for(@arrangement) do |f| %>
         <%= f.hidden_field(:done, :value => "false") %>
         <%= button_tag(:class => "btn btn-danger btn-large", :confirm => "Are you sure you want to reopen the arrangement?") do %>
-          <i class="icon-warning-sign"></i> Reopen arrangement
+          Reopen arrangement <i class="icon-warning-sign"></i>
         <% end %>
       <% end %>
       </p>
