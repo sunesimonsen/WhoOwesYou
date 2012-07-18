@@ -17,11 +17,12 @@ class ParticipantsController < ApplicationController
     participant = arrangement.participants.build(params[:participant]);
     if participant.save
       flash[:success] = "Participant was succesfully created."
+      redirect_to arrangement_participant_path(arrangement, participant)
     else 
       errors = participant.errors
       flash[:error] = errors.empty? ? "Error" : errors.full_messages.to_sentence
+      redirect_to arrangement_path(arrangement)
     end
-    redirect_to arrangement_path(arrangement)
   end
 
   def destroy

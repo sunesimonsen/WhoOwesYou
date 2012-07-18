@@ -9,26 +9,38 @@
 <div class="row">
   <div class="span4">
     <div id="arrangement-information" class="well">
-      <h2><%= @arrangement.name =%>
+      <h2>
+        <span class="editable"><%= @arrangement.name =%></span>
         <small class="pull-right"><%= @arrangement.total_expenses %></small>
       </h2>
+      <p class="editable">
+        Click to add a description
+      </p>
       <p>
-      Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry.
       <%= form_for(@arrangement) do |f| %>
         <%= f.hidden_field(:done, :value => "true") %>
         <%= button_tag(:class => "btn btn-success btn-large") do %>
-          <i class="icon-ok"></i> <span class="hidden-tablet">Information </span>Completed
+          <i class="icon-ok"></i> Settle dept
         <% end %>
       <% end %>
       </p>
     </div>
     <div class="well hidden-phone">
       <h2>Help</h2>
-      Lorem Ipsum is simply dummy text of the printing and typesetting
-      industry. Lorem Ipsum has been the industry's standard dummy
-      text ever since the 1500s, when an unknown printer took a galley
-      of type and scrambled it to make a type specimen book.
+      <p>
+        <p>
+          Use the form on the right to add yourself as a participant to this arrangement.
+          Then you will be presented with a page where you can add your expenses.
+        </p>
+      </p>
+      <p>
+        <strong>Notice:</strong> you should add yourself as a participant, even if you don't have any
+        expenses in conjunction with the arrangement.
+      </p>
+      <p>
+        When all the participants have entered their expenses press the <em>Settle dept</em> button to
+        get a plan for settling the dept.
+      </p>
     </div> 
   </div><!--/span-->
   <div class="span8">
@@ -62,7 +74,7 @@
             <td>
               <%= link_to(arrangement_participant_path(@arrangement, p),
                   :confirm => 'Are you sure?', :method => :delete) do %>
-              <i class="icon-trash"></i>
+              <i class="icon-trash" title="Delete participant"></i>
               <% end %> 
             </td>
           </tr>
