@@ -82,6 +82,10 @@ describe Arrangement  do
     let(:piet) {double(:name => "Piet", :has_claim? => false, :in_debt? => true, :debt => 40)}
     let(:daniel) {double(:name => "Daniel", :has_claim? => false, :in_debt? => true,  :debt => 40)}
 
+    let(:jane) {double(:name => "Jane", :in_debt? => true, :has_claim? => false,  :debt => 33.33)} 
+    let(:charles) {double(:name => "Charles", :in_debt? => true, :has_claim? => false,  :debt => 33.33)} 
+    let(:julia) {double(:name => "Julia", :in_debt? => false, :has_claim? => true,  :claim => 66.67)} 
+
     it "should return no transfers if there are no participants" do
       subject.stub(:participants => []) 
       subject.settle_debt.empty?.should be_true
@@ -100,6 +104,17 @@ describe Arrangement  do
       transfers.to(michael).amount.should == 100
     end
 
+    it "can floats correctly" do
+      subject.stub(:participants => [julia, jane, charles]) 
+      transfers = subject.settle_debt
+
+      transfers.amount.should == 66.67
+      transfers.from(jane).amount.should == 33.34
+      transfers.from(charles).amount.should == 33.33
+      transfers.to(julia).amount.should == 66.67
+    end
+
+
     it "throws an error if the claim is bigger than the debt" do
       pending
     end
@@ -108,5 +123,4 @@ describe Arrangement  do
       pending
     end
   end 
-
 end 

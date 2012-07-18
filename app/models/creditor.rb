@@ -12,8 +12,10 @@ class Creditor
   end 
 
   def collect_debt debitor
-    transfer_amount = debitor.debt < claim ? debitor.debt : claim
+    transfer_amount = (debitor.debt - claim) > -1 ? claim : debitor.debt
+
     @claim -= transfer_amount
+
     debitor.debt -= transfer_amount
     Transfer.new from: debitor.participant,
                  to: @participant,
