@@ -9,17 +9,17 @@
     <div class="row">
       <div class="span4">
         <div id="arrangement-information" class="well">
-          <h2>
+          <h3>
             <span class="editable"><%= @arrangement.name =%></span>
-            <small class="pull-right"><%= @arrangement.total_expenses %></small>
-          </h2>
+            <span class="pull-right"><%= @arrangement.total_expenses %></span>
+          </h3>
           <p class="editable">
             Click to add a description
           </p>
           <p>
           <%= form_for(@arrangement) do |f| %>
             <%= f.hidden_field(:done, :value => "false") %>
-            <%= button_tag(:class => "btn btn-danger btn-large", :confirm => "Are you sure you want to reopen the arrangement?") do %>
+            <%= button_tag(:class => "btn btn-danger", :confirm => "Are you sure you want to reopen the arrangement?") do %>
               <i class="icon-warning-sign"></i> Reopen arrangement 
             <% end %>
           <% end %>

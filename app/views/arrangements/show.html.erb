@@ -9,26 +9,24 @@
     <div class="row">
       <div class="span4">
         <div id="arrangement-information" class="well">
-          <h2>
+          <h3>
             <span class="arrangement-name rest-in-place" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement" data-attribute="name">
               <%= @arrangement.name =%>
             </span>
-            <small class="pull-right"><%= @arrangement.total_expenses %></small>
-          </h2>
-          <p class="editable">
-            Click to add a description
+            <span class="pull-right"><%= @arrangement.total_expenses %></span>
+          </h3>
+          <p class="arrangement-description rest-in-place" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement" data-attribute="description" data-formtype="textarea">
+            <%= @arrangement.description || 'Click to add a description' %>
           </p>
-          <p>
           <%= form_for(@arrangement) do |f| %>
             <%= f.hidden_field(:done, :value => "true") %>
-            <%= button_tag(:class => "btn btn-success btn-large") do %>
+            <%= button_tag(:class => "btn btn-success") do %>
               <i class="icon-ok"></i> Settle dept
             <% end %>
           <% end %>
-          </p>
         </div>
         <div class="well hidden-phone">
-          <h2>Help</h2>
+          <h3>Help</h3>
           <p>
             <p>
               Use the form on the right to add yourself as a participant to this arrangement.
