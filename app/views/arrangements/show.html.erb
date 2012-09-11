@@ -1,95 +1,97 @@
-<div class="content">
-  <div class="row">
-    <div class="span12">
-      <ul class="breadcrumb">
-        <li class="active"><i class="icon-home"></i> <%= @arrangement.name %></li>
-      </ul>
-    </div>
-  </div>
-  <%= render "shared/notifications" %>
-  <div class="row">
-    <div class="span4">
-      <div id="arrangement-information" class="well">
-        <h2>
-          <span class="editable"><%= @arrangement.name =%></span>
-          <small class="pull-right"><%= @arrangement.total_expenses %></small>
-        </h2>
-        <p class="editable">
-          Click to add a description
-        </p>
-        <p>
-        <%= form_for(@arrangement) do |f| %>
-          <%= f.hidden_field(:done, :value => "true") %>
-          <%= button_tag(:class => "btn btn-success btn-large") do %>
-            <i class="icon-ok"></i> Settle dept
-          <% end %>
-        <% end %>
-        </p>
+<div class="container">
+  <div class="content">
+    <div class="row">
+      <div class="span12">
+        <ul class="breadcrumb">
+          <li class="active"><i class="icon-home"></i> <%= @arrangement.name %></li>
+        </ul>
       </div>
-      <div class="well hidden-phone">
-        <h2>Help</h2>
-        <p>
-          <p>
-            Use the form on the right to add yourself as a participant to this arrangement.
-            Then you will be presented with a page where you can add your expenses.
+    </div>
+    <%= render "shared/notifications" %>
+    <div class="row">
+      <div class="span4">
+        <div id="arrangement-information" class="well">
+          <h2>
+            <span class="editable"><%= @arrangement.name =%></span>
+            <small class="pull-right"><%= @arrangement.total_expenses %></small>
+          </h2>
+          <p class="editable">
+            Click to add a description
           </p>
-        </p>
-        <p>
-          <strong>Notice:</strong> you should add yourself as a participant, even if you don't have any
-          expenses in conjunction with the arrangement.
-        </p>
-        <p>
-          When all the participants have entered their expenses press the <em>Settle dept</em> button to
-          get a plan for settling the dept.
-        </p>
-      </div> 
-    </div><!--/span-->
-    <div class="span8">
-      <section id="participants" class="tab-pane">
-        <% if @participants.empty? %>
-        <div class="alert alert-info">
-          <h3>This arrangement has no participants</h3>
-          You can add new participants using the form below. Just enter the name of the participant and click add.
-        </div>
-        <% else %>
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Expenses</th>
-              <th>Balance</th>
-              <th class="collapsed"><i class="icon-cog"></i></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @participants.each do |p|
-               onclick = "location.href='#{arrangement_participant_path(@arrangement, p)}'" %>
-            <tr >
-              <td onclick="<%= onclick %>" class="clickable"><%= p.name %></td>
-              <td onclick="<%= onclick %>" class="clickable number"><%= p.total_expenses %></td>
-              <td onclick="<%= onclick %>" class="clickable number">
-                <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
-                  <%= p.balance %>
-                </span>
-              </td>
-              <td>
-                <%= link_to(arrangement_participant_path(@arrangement, p),
-                    :confirm => 'Are you sure?', :method => :delete) do %>
-                <i class="icon-trash" title="Delete participant"></i>
-                <% end %> 
-              </td>
-            </tr>
+          <p>
+          <%= form_for(@arrangement) do |f| %>
+            <%= f.hidden_field(:done, :value => "true") %>
+            <%= button_tag(:class => "btn btn-success btn-large") do %>
+              <i class="icon-ok"></i> Settle dept
             <% end %>
-          </tbody>
-        </table>
-        <% end %>
-  
-        <%= form_for([@arrangement, @participant], :html => {:class => "well form-inline"}) do |f| %>
-          <h6>Add participant</h6>
-          <%= f.text_field :name, :placeholder => "Participant name" %>
-          <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
-        <% end %>
-      </section>
-    </div><!--/span-->
-  </div><!--/row-->
-</div><!--/content-->
+          <% end %>
+          </p>
+        </div>
+        <div class="well hidden-phone">
+          <h2>Help</h2>
+          <p>
+            <p>
+              Use the form on the right to add yourself as a participant to this arrangement.
+              Then you will be presented with a page where you can add your expenses.
+            </p>
+          </p>
+          <p>
+            <strong>Notice:</strong> you should add yourself as a participant, even if you don't have any
+            expenses in conjunction with the arrangement.
+          </p>
+          <p>
+            When all the participants have entered their expenses press the <em>Settle dept</em> button to
+            get a plan for settling the dept.
+          </p>
+        </div> 
+      </div><!--/span-->
+      <div class="span8">
+        <section id="participants" class="tab-pane">
+          <% if @participants.empty? %>
+          <div class="alert alert-info">
+            <h3>This arrangement has no participants</h3>
+            You can add new participants using the form below. Just enter the name of the participant and click add.
+          </div>
+          <% else %>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Expenses</th>
+                <th>Balance</th>
+                <th class="collapsed"><i class="icon-cog"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @participants.each do |p|
+                 onclick = "location.href='#{arrangement_participant_path(@arrangement, p)}'" %>
+              <tr >
+                <td onclick="<%= onclick %>" class="clickable"><%= p.name %></td>
+                <td onclick="<%= onclick %>" class="clickable number"><%= p.total_expenses %></td>
+                <td onclick="<%= onclick %>" class="clickable number">
+                  <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
+                    <%= p.balance %>
+                  </span>
+                </td>
+                <td>
+                  <%= link_to(arrangement_participant_path(@arrangement, p),
+                      :confirm => 'Are you sure?', :method => :delete) do %>
+                  <i class="icon-trash" title="Delete participant"></i>
+                  <% end %> 
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <% end %>
+    
+          <%= form_for([@arrangement, @participant], :html => {:class => "well form-inline"}) do |f| %>
+            <h6>Add participant</h6>
+            <%= f.text_field :name, :placeholder => "Participant name" %>
+            <button type="submit" class="btn btn-primary"><i class="icon-plus"></i> Add</button>
+          <% end %>
+        </section>
+      </div><!--/span-->
+    </div><!--/row-->
+  </div><!--/content-->
+</div> <!-- /container -->
