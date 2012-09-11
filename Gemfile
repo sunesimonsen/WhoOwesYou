@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'uuid'
 
 gem "twitter-bootstrap-rails"
+gem 'rest_in_place'
 
 # Gems used only for assets and not required
 # in production environments by default.

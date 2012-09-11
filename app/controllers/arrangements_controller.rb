@@ -22,11 +22,20 @@ class ArrangementsController < ApplicationController
 
   def update
     arrangement = Arrangement.find params[:id]
-    unless arrangement.update_attributes(params[:arrangement])
+    if arrangement.update_attributes(params[:arrangement])
+      respond_to do |format|
+        format.html { redirect_to arrangement_path(arrangement) }
+        format.json { render :json => arrangement }
+      end 
+    else
       errors = participant.errors
       flash[:error] = errors.empty? ? "Error" : errors.full_messages.to_sentence
+
+      respond_to do |format|
+        format.html { redirect_to arrangement_path(arrangement) }
+        format.json { render :nothing => true }
+      end 
     end
-    redirect_to arrangement_path(arrangement)
   end 
 
   private

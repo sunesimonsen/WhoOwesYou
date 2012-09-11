@@ -1,6 +1,6 @@
 <div class="breadcrumb">
   <ul class="container">
-    <li class="active"><i class="icon-home"></i> <%= @arrangement.name %></li>
+    <li class="active"><i class="icon-home"></i> <span class="arrangement-name"><%= @arrangement.name %></span></li>
   </ul>
 </div>
 <div class="container">
@@ -10,7 +10,9 @@
       <div class="span4">
         <div id="arrangement-information" class="well">
           <h2>
-            <span class="editable"><%= @arrangement.name =%></span>
+            <span class="arrangement-name rest-in-place" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement" data-attribute="name">
+              <%= @arrangement.name =%>
+            </span>
             <small class="pull-right"><%= @arrangement.total_expenses %></small>
           </h2>
           <p class="editable">

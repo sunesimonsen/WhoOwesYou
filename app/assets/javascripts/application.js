@@ -7,4 +7,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require 'rest_in_place'
 //= require_tree .
+
+$('.arrangement-name.rest-in-place').bind('success.rest-in-place', function(event, data){
+    $('.arrangement-name').text(data.name);
+});
