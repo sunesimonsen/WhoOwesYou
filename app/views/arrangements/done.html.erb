@@ -26,76 +26,75 @@
           </p>
         </div>
       </div><!--/span-->
-      <div class="span8">
+      <div class="span8 tabs-below">
+        
+        <div class="tab-content">
+          
+          <section id="transfers" class="tab-pane active">
+            <% if @transfers.empty? %>
+            <div class="alert alert-info">
+              <h3>No transfers are necessary to settle dept</h3>
+            </div>
+            <% else %>
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Amount</th>
+                  <th>To</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @transfers.each do |t| %>
+                <tr>
+                  <td onclick="location.href='<%= arrangement_participant_path(@arrangement, t.from) %>'" class="clickable"><%= t.from.name %></td>
+                  <td><%= t.amount.round(2) %></td>
+                  <td onclick="location.href='<%= arrangement_participant_path(@arrangement, t.to) %>'" class="clickable"><%= t.to.name %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <% end %>
+          </section>
+          
+          <section id="participants" class="tab-pane">
+            <% if @transfers.empty? %>
+            <div class="alert alert-info">
+              <h3>This arrangement has no participants</h3>
+              Reopen the arrangement to add participants and expenses.
+            </div>
+            <% else %>
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Expenses</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @participants.each do |p|
+                   onclick = "location.href='#{arrangement_participant_path(@arrangement, p)}'"
+                   %>
+                <tr >
+                  <td onclick="<%= onclick %>" class="clickable"><%= p.name %></td>
+                  <td onclick="<%= onclick %>" class="clickable number"><%= p.total_expenses %></td>
+                  <td onclick="<%= onclick %>" class="clickable number">
+                    <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
+                      <%= p.balance.round(2) %>
+                    </span>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+            </table>
+          </section>    
+        </div>
         <ul class="nav nav-tabs">
           <li class="active"><a href="#transfers" data-toggle="tab">Transfers</a></li>
           <li><a href="#participants" data-toggle="tab">Details</a></li>
         </ul>
-    
-        <div class="tab-content">
-    
-        <section id="transfers" class="tab-pane active">
-          <% if @transfers.empty? %>
-          <div class="alert alert-info">
-            <h3>No transfers are necessary to settle dept</h3>
-          </div>
-          <% else %>
-          <table class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>From</th>
-                <th>Amount</th>
-                <th>To</th>
-              </tr>
-            </thead>
-            <tbody>
-            <% @transfers.each do |t| %>
-            <tr>
-              <td onclick="location.href='<%= arrangement_participant_path(@arrangement, t.from) %>'" class="clickable"><%= t.from.name %></td>
-              <td><%= t.amount %></td>
-              <td onclick="location.href='<%= arrangement_participant_path(@arrangement, t.to) %>'" class="clickable"><%= t.to.name %></td>
-            </tr>
-            <% end %>
-            </tbody>
-          </table>
-          <% end %>
-        </section>
-    
-        <section id="participants" class="tab-pane">
-          <% if @transfers.empty? %>
-          <div class="alert alert-info">
-            <h3>This arrangement has no participants</h3>
-            Reopen the arrangement to add participants and expenses.
-          </div>
-          <% else %>
-          <table class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Expenses</th>
-                <th>Balance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @participants.each do |p|
-                 onclick = "location.href='#{arrangement_participant_path(@arrangement, p)}'"
-                 %>
-              <tr >
-                <td onclick="<%= onclick %>" class="clickable"><%= p.name %></td>
-                <td onclick="<%= onclick %>" class="clickable number"><%= p.total_expenses %></td>
-                <td onclick="<%= onclick %>" class="clickable number">
-                  <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
-                    <%= p.balance %>
-                  </span>
-                </td>
-              </tr>
-              <% end %>
-            </tbody>
-            <% end %>
-          </table>
-    
-          </div>
-        </section>
       </div><!--/span-->
     </div><!--/row-->
   </div><!--/content-->

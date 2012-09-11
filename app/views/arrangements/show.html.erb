@@ -68,7 +68,7 @@
                 <td onclick="<%= onclick %>" class="clickable number"><%= p.total_expenses %></td>
                 <td onclick="<%= onclick %>" class="clickable number">
                   <span class="badge badge-<%= p.in_debt? ? 'important' : 'success' %>">
-                    <%= p.balance %>
+                    <%= p.balance.round(2) %>
                   </span>
                 </td>
                 <td>

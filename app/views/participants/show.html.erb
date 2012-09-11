@@ -19,7 +19,7 @@
             <dt>Balance:</dt>
             <dd>
               <span class="badge badge-<%= @participant.in_debt? ? 'important' : 'success' %>">
-                <%= @participant.balance %>
+                <%= @participant.balance.round(2) %>
               </span>
             </dd>
           </dl>

@@ -16,7 +16,6 @@ class ParticipantsController < ApplicationController
     arrangement = Arrangement.find(params[:arrangement_id])
     participant = arrangement.participants.build(params[:participant]);
     if participant.save
-      flash[:success] = "Participant was succesfully created."
       redirect_to arrangement_participant_path(arrangement, participant)
     else 
       errors = participant.errors
@@ -29,7 +28,6 @@ class ParticipantsController < ApplicationController
     arrangement = Arrangement.find(params[:arrangement_id])
     participant = arrangement.participants.find(params[:id])
     participant.destroy
-    flash[:success] = "Participant was succesfully deleted."
     redirect_to arrangement_path(arrangement)
   end 
 end

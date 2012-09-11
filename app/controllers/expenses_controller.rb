@@ -13,9 +13,7 @@ class ExpensesController < ApplicationController
     arrangement = Arrangement.find(params[:arrangement_id])
     participant = arrangement.participants.find(params[:participant_id])
     expense = participant.expenses.build(params[:expense])
-    if expense.save
-      flash[:success] = "Expense was succesfully created."
-    else 
+    if !expense.save
       errors = expense.errors
       flash[:error] = errors.empty? ? "Error" : errors.full_messages.to_sentence
     end
