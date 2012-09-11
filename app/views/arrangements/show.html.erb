@@ -8,15 +8,15 @@
     <%= render "shared/notifications" %>
     <div class="row">
       <div class="span4">
-        <div id="arrangement-information" class="well">
+        <div id="arrangement-information" class="well" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement">
           <h3>
-            <span class="arrangement-name rest-in-place" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement" data-attribute="name">
+            <span class="arrangement-name rest-in-place" data-attribute="name">
               <%= @arrangement.name =%>
             </span>
             <span class="pull-right"><%= @arrangement.total_expenses %></span>
           </h3>
-          <p class="arrangement-description rest-in-place" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement" data-attribute="description" data-formtype="textarea">
-            <%= @arrangement.description || 'Click to add a description' %>
+          <p class="arrangement-description rest-in-place" data-attribute="description" data-formtype="textarea">
+            <%= @arrangement.description.presence || 'Click to add a description' %>
           </p>
           <%= form_for(@arrangement) do |f| %>
             <%= f.hidden_field(:done, :value => "true") %>

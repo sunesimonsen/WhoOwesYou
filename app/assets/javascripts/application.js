@@ -13,3 +13,8 @@
 $('.arrangement-name.rest-in-place').bind('success.rest-in-place', function(event, data){
     $('.arrangement-name').text(data.name);
 });
+
+$('.arrangement-description.rest-in-place').bind('success.rest-in-place', function(event, data){
+    $('.arrangement-description').text(data.description || 'Click to add a description');
+});
+

@@ -10,12 +10,14 @@
       <div class="span4">
         <div id="arrangement-information" class="well">
           <h3>
-            <span class="editable"><%= @arrangement.name =%></span>
+            <span class="editable"><%= @arrangement.name %></span>
             <span class="pull-right"><%= @arrangement.total_expenses %></span>
           </h3>
-          <p class="editable">
-            Click to add a description
+          <% if @arrangement.description %>
+          <p>
+            <%= @arrangement.description %>
           </p>
+          <% end %>
           <p>
           <%= form_for(@arrangement) do |f| %>
             <%= f.hidden_field(:done, :value => "false") %>
