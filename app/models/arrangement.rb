@@ -6,8 +6,6 @@ class Arrangement < ActiveRecord::Base
   has_many :participants, :primary_key => 'uuid',
     :foreign_key => 'arrangement_uuid', :dependent => :delete_all
 
-  validates :name, :presence => true
-
   before_create :generate_uuid
 
   def generate_uuid

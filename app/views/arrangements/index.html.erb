@@ -1,5 +1,59 @@
-<%= form_tag do %>
-  <%= label_tag(:name, "Arrangment name:") %>
-  <%= text_field_tag(:name) %>
-  <%= submit_tag("Create") %>
-<% end %>
+<div class="container">
+  <div class="content">
+    <div class="row examples">
+      <div class="span6">
+        <div class="create">
+          <h1>Get started in seconds!</h1>
+          <p>
+            Create a new arrangement by filling in the name below and
+            clicking the create-button.
+          </p>
+          <p>
+            You will recieve an e-mail with a link to the newly created
+            arrangement. You forward this mail to each participant of the
+            arrangement in order for them to fill in their expenses.
+          </p>
+          <%= form_tag({}, :class => "form-horizontal") do %>
+          <div class="control-group">
+            <%= label_tag(:name, "Arrangment name:", :class => "control-label") %>
+            <div class="controls">
+              <%= text_field_tag :name, '', :placeholder => "Arrangement name" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <%= label_tag(:email, "E-mail:", :class => "control-label") %>
+            <div class="controls">
+              <%= text_field_tag :email, '', :placeholder => "E-mail" %>
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= submit_tag("Create Arrangement", :class => "btn btn-primary btn-large") %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="row">
+          <div class="span3 example">
+            <img src="http://placehold.it/260x200" class="img-polaroid">
+            <p>Create a new arrangement in seconds</p>
+          </div>
+          <div class="span3 example">
+            <img src="http://placehold.it/260x200" class="img-polaroid">
+            <p>Send a link to each of the participants</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span3 example">
+            <img src="http://placehold.it/260x200" class="img-polaroid">
+            <p>Participants enter their expenses</p>
+          </div>
+          <div class="span3 example">
+            <img src="http://placehold.it/260x200" class="img-polaroid">
+            <p>Get a plan for settling the dept</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

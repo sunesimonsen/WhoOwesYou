@@ -11,7 +11,7 @@
         <div id="arrangement-information" class="well" data-url="<%=arrangement_path(@arrangement)%>" data-object="arrangement">
           <h3>
             <span class="arrangement-name rest-in-place" data-attribute="name">
-              <%= @arrangement.name =%>
+              <%= @arrangement.name || 'Click to add a title' =%>
             </span>
             <span class="pull-right"><%= @arrangement.total_expenses %></span>
           </h3>

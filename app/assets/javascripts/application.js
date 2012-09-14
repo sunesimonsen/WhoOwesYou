@@ -11,7 +11,7 @@
 //= require_tree .
 
 $('.arrangement-name.rest-in-place').bind('success.rest-in-place', function(event, data){
-    $('.arrangement-name').text(data.name);
+    $('.arrangement-name').text(data.name || 'Click to add a title');
 });
 
 $('.arrangement-description.rest-in-place').bind('success.rest-in-place', function(event, data){

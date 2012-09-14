@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604170138) do
+ActiveRecord::Schema.define(:version => 20120718151234) do
 
   create_table "arrangements", :id => false, :force => true do |t|
     t.string   "uuid"
-    t.string   "name",                          :null => false
+    t.string   "name",                           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "done",       :default => false
+    t.boolean  "done",        :default => false
+    t.string   "description"
   end
 
   create_table "expenses", :force => true do |t|
@@ -32,12 +33,6 @@ ActiveRecord::Schema.define(:version => 20120604170138) do
   create_table "participants", :force => true do |t|
     t.string   "name",             :null => false
     t.string   "arrangement_uuid", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
