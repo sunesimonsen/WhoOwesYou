@@ -14,7 +14,7 @@ class ArrangementsController < ApplicationController
   end
 
   def create
-    arrangement = Arrangement.create :name => params[:name]
+    arrangement = Arrangement.create :name => params[:name], :email => params[:email]
     redirect_to arrangement_path(arrangement)
   end
 

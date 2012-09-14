@@ -5,13 +5,15 @@
         <div class="create">
           <h1>Get started in seconds!</h1>
           <p>
-            Create a new arrangement by filling in the name below and
-            clicking the create-button.
+            Create a new arrangement by filling in the name of the
+            arrangement and your e-mail below and clicking the
+            create-button.
           </p>
           <p>
-            You will recieve an e-mail with a link to the newly created
-            arrangement. You forward this mail to each participant of the
-            arrangement in order for them to fill in their expenses.
+            You will recieve an e-mail with a link to the created
+            arrangement. You forward this mail to all the participants
+            of the arrangement, and wait for them to enter their
+            expenses.
           </p>
           <%= form_tag({}, :class => "form-horizontal") do %>
           <div class="control-group">
@@ -23,7 +25,7 @@
           <div class="control-group">
             <%= label_tag(:email, "E-mail:", :class => "control-label") %>
             <div class="controls">
-              <%= text_field_tag :email, '', :placeholder => "E-mail" %>
+              <%= email_field_tag :email, '', :placeholder => "E-mail" %>
             </div>
           </div>
           <div class="form-actions">
